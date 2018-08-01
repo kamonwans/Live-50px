@@ -6,16 +6,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.liuyao.lab.R;
+import com.example.liuyao.lab.adapter.PhotoListAdapter;
+import com.example.liuyao.lab.view.PhotoListItem;
 
 
-/**
- * Created by nuuneoi on 11/16/2014.
- */
 @SuppressWarnings("unused")
 public class MainFragment extends Fragment {
 
+    ListView listView;
+    PhotoListAdapter photoListAdapter;
     public MainFragment() {
         super();
     }
@@ -52,6 +54,9 @@ public class MainFragment extends Fragment {
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
         // Init 'View' instance(s) with rootView.findViewById here
+        listView = rootView.findViewById(R.id.listView);
+        photoListAdapter = new PhotoListAdapter();
+        listView.setAdapter(photoListAdapter);
     }
 
     @Override
