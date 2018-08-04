@@ -3,6 +3,7 @@ package com.example.liuyao.lab.adapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.example.liuyao.lab.view.PhotoListItem;
 
@@ -23,7 +24,34 @@ public class PhotoListAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-        return new PhotoListItem(viewGroup.getContext());
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position % 2 == 0 ? 0 : 1;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
+        if (getItemViewType(position)==0) {
+            PhotoListItem item;
+            if (convertView != null) {
+                item = (PhotoListItem) convertView;
+            } else {
+                item = new PhotoListItem(viewGroup.getContext());
+            }
+            return item;
+        }else {
+            TextView item;
+            if (convertView != null) {
+                item = (TextView) convertView;
+            } else {
+                item = new TextView(viewGroup.getContext());
+                item.setText("position" +position);
+            }
+            return item;
+        }
     }
 }
