@@ -7,10 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.liuyao.lab.R;
 import com.example.liuyao.lab.adapter.PhotoListAdapter;
+import com.example.liuyao.lab.dao.PhotoItemCollectioDao;
+import com.example.liuyao.lab.manager.HttpManager;
 import com.example.liuyao.lab.view.PhotoListItem;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 @SuppressWarnings("unused")
@@ -57,6 +66,36 @@ public class MainFragment extends Fragment {
         listView = rootView.findViewById(R.id.listView);
         photoListAdapter = new PhotoListAdapter();
         listView.setAdapter(photoListAdapter);
+
+        Call<PhotoItemCollectioDao> call = HttpManager.getInstance().getApiService().loadPhotoList();
+        call.enqueue(new Callback<PhotoItemCollectioDao>() {
+            @Override
+            public void onResponse(Call<PhotoItemCollectioDao> call,
+                                   Response<PhotoItemCollectioDao> response) {
+                if (response.isSuccessful()){
+                    PhotoItemCollectioDao dao = response.body();
+                    Toast.makeText(getActivity(),dao.getData().get(0).getCaption(),Toast.LENGTH_LONG)
+                            .show();
+
+                }else {
+                    // Handle
+                    try {
+                        Toast.makeText(getActivity(),response.errorBody().string(),Toast.LENGTH_LONG)
+                                .show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PhotoItemCollectioDao> call, Throwable t) {
+                // Handle
+                Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
     }
 
     @Override
