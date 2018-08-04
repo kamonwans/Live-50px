@@ -3,6 +3,8 @@ package com.example.liuyao.lab.manager;
 import android.content.Context;
 
 import com.example.liuyao.lab.manager.http.ApiService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 
 import retrofit2.Retrofit;
@@ -25,9 +27,13 @@ public class HttpManager {
     private HttpManager() {
         mContext = Contextor.getInstance().getContext();
 
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .create();
+
         Retrofit retrofit =new Retrofit.Builder()
                 .baseUrl("https://nuuneoi.com/courses/500px/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         apiService = retrofit.create(ApiService.class);
 
