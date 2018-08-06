@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.liuyao.lab.R;
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
@@ -12,6 +14,9 @@ import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
 
 public class PhotoListItem extends BaseCustomViewGroup {
 
+    private ImageView ivImg;
+    private TextView tvName;
+    private TextView tvDescription;
     public PhotoListItem(Context context) {
         super(context);
         initInflate();
@@ -46,6 +51,10 @@ public class PhotoListItem extends BaseCustomViewGroup {
 
     private void initInstances() {
         // findViewById here
+        ivImg = findViewById(R.id.ivImg);
+        tvName = findViewById(R.id.tvName);
+        tvDescription = findViewById(R.id.tvDescription);
+
     }
 
     private void initWithAttrs(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
