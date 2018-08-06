@@ -76,6 +76,7 @@ public class MainFragment extends Fragment {
                 if (response.isSuccessful()){
                     PhotoItemCollectionDao dao = response.body();
                     PhotoListManager.getInstance().setDao(dao);
+                    photoListAdapter.notifyDataSetChanged();
                     Toast.makeText(Contextor.getInstance().getContext(),dao.getData().get(0).getCaption(),Toast.LENGTH_LONG)
                             .show();
 
