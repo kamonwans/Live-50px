@@ -104,4 +104,17 @@ public class PhotoListItem extends BaseCustomViewGroup {
         setMeasuredDimension(width,height);
 
     }
+
+    public void setNameText(String text) {
+        tvName.setText(text);
+
+    }
+    public void setDescriptionText(String text) {
+        tvDescription.setText(text);
+
+    }
+    public void setImageUrl(String url) {
+        // TODO: Load Image
+
+    }
 }
