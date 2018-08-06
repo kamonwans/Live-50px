@@ -1,5 +1,6 @@
 package com.example.liuyao.lab.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import com.example.liuyao.lab.adapter.PhotoListAdapter;
 import com.example.liuyao.lab.dao.PhotoItemCollectioDao;
 import com.example.liuyao.lab.manager.HttpManager;
 import com.example.liuyao.lab.view.PhotoListItem;
+import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 
 import java.io.IOException;
 
@@ -74,13 +76,13 @@ public class MainFragment extends Fragment {
                                    Response<PhotoItemCollectioDao> response) {
                 if (response.isSuccessful()){
                     PhotoItemCollectioDao dao = response.body();
-                    Toast.makeText(getActivity(),dao.getData().get(0).getCaption(),Toast.LENGTH_LONG)
+                    Toast.makeText(Contextor.getInstance().getContext(),dao.getData().get(0).getCaption(),Toast.LENGTH_LONG)
                             .show();
 
                 }else {
                     // Handle
                     try {
-                        Toast.makeText(getActivity(),response.errorBody().string(),Toast.LENGTH_LONG)
+                        Toast.makeText(Contextor.getInstance().getContext(),response.errorBody().string(),Toast.LENGTH_LONG)
                                 .show();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -92,7 +94,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onFailure(Call<PhotoItemCollectioDao> call, Throwable t) {
                 // Handle
-                Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_LONG)
+                Toast.makeText(Contextor.getInstance().getContext(),t.toString(),Toast.LENGTH_LONG)
                         .show();
             }
         });
