@@ -2,7 +2,7 @@ package com.example.liuyao.lab.dao;
 
 import java.util.List;
 
-public class PhotoItemCollectioDao {
+public class PhotoItemCollectionDao {
     @SerializedName("success") private boolean success;
     @SerializedName("data") private List<PhotoItemDao> data;
 

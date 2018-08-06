@@ -1,6 +1,6 @@
 package com.example.liuyao.lab.manager.http;
 
-import com.example.liuyao.lab.dao.PhotoItemCollectioDao;
+import com.example.liuyao.lab.dao.PhotoItemCollectionDao;
 
 import retrofit2.Call;
 import retrofit2.http.POST;
@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 public interface ApiService {
 
     @POST("list")
-    Call<PhotoItemCollectioDao> loadPhotoList();
+    Call<PhotoItemCollectionDao> loadPhotoList();
 
 
 }
