@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.liuyao.lab.R;
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
@@ -18,6 +19,7 @@ public class PhotoListItem extends BaseCustomViewGroup {
     private ImageView ivImg;
     private TextView tvName;
     private TextView tvDescription;
+
     public PhotoListItem(Context context) {
         super(context);
         initInflate();
@@ -97,12 +99,12 @@ public class PhotoListItem extends BaseCustomViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = MeasureSpec.getSize(widthMeasureSpec); // width in px
-        int height = width*2 / 3;
-        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height,MeasureSpec.EXACTLY);
+        int height = width * 2 / 3;
+        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
         // Child Views
         super.onMeasure(widthMeasureSpec, newHeightMeasureSpec);
         // Self
-        setMeasuredDimension(width,height);
+        setMeasuredDimension(width, height);
 
     }
 
@@ -110,10 +112,11 @@ public class PhotoListItem extends BaseCustomViewGroup {
         tvName.setText(text);
 
     }
+
     public void setDescriptionText(String text) {
         tvDescription.setText(text);
-
     }
+
     public void setImageUrl(String url) {
         Glide.with(getContext())
                 .load(url)

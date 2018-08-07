@@ -1,7 +1,6 @@
 package com.example.liuyao.lab;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 
